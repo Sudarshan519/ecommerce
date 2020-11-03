@@ -1,0 +1,36 @@
+{% extends 'blog/basic.html' %} {% block blogactive %}active {% endblock blogactive %} {% block title %} Blog Home {% endblock title %} {%block body %}
+<div class="container mt-2">
+  
+  <div class="row mb-2">
+    {% for post in allPost %}
+
+    <div class="col-md-6">
+      <div class="card flex-md-row mb-4 shadow-sm h-md-250">
+        <div class="card-body d-flex flex-column align-items-start">
+          <strong class="d-inline-block mb-2 text-primary"
+            >Article by{{post.author}}</strong
+          >
+          <h3 class="mb-0">
+            <a class="text-dark" href="#">{{post.title}}</a>
+          </h3>
+          <div class="mb-1 text-muted">{{post.datetime}}</div>
+          <p class="card-text mb-auto">{{post.content|truncatechars:500}}.</p>
+          <a href="/blog/{{post.slug}}">Read more</a>
+        </div>
+        <img
+          class="card-img-right flex-auto d-none d-lg-block"
+          data-src="holder.js/200x250?theme=thumb"
+          alt="Thumbnail [200x250]"
+          style="width: 200px; height: 250px"
+          src="/media/{{post.thumbnail}}"
+          data-holder-rendered="true"
+        />
+      </div>
+
+      {%if forloop.counter|divisibleby:2 %}
+    </div>
+    <div class="row mb-2">{% endif %}</div>
+    {% endfor %}
+  </div>
+  {% endblock body %}
+</div>

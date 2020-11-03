@@ -36,10 +36,13 @@
     <div class="col my-4">
         <h2> Step 1 - My Awesome Cart Express Checkout - Review Your Cart items </h2>
         <div id='items'>
-            <ul class="list-group">
-             
-            </ul>
+           
         </div>
+         <div class="alert alert-primary my-2" role="alert">
+                 
+                 Grand Total: Rs<span id='total' class="badge badge-primary badge-pill mx-4">0></span>
+Thanks for using Ecommerce web 
+</div>
     </div>
     <div class="col my-4">
         <h2> Step 2 - Enter Address & Other Details</h2>
@@ -109,16 +112,22 @@ for (item in cart) {
     let qty = cart[item][0];
     sum = sum + qty;
     totalPrice=totalPrice+qty*price
-    mystr = `        <li class="list-group-item d-flex justify-content-between align-items-center">
+    mystr = `    <ul class="list-group">
+             
+                <li class="list-group-item d-flex justify-content-between align-items-center">
                    ${name}
                     <span class="badge badge-primary badge-pill">${qty}</span>
-                    <span class="badge badge-primary badge-pill">${totalPrice}</span>
+                   
                     
                     
-                </li>`
+                </li>
+                </ul> 
+               `
+                
     $('#items').append(mystr);
 }
 document.getElementById('cart').innerHTML = sum;
+document.getElementById('total').innerHTML = totalPrice;
 $('#itemsJson').val(JSON.stringify(cart));
 {% if thank %}
 alert('Thanks for ordering with us. Your order is is {{id}}. Use it to track your order using our order tracker');

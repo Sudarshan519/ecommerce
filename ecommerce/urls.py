@@ -18,8 +18,15 @@ from django.urls import path,include
 from . import views
 from django.conf.urls.static import static
 from django.conf import settings
+admin.site.site_header="iCoder Admin"
+admin.site.site_title='iCoder Admin Panel'
+admin.site.index_title='Welcome to iCoder Admin Panel'
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='Home'),
     path('shop/', include('website.urls')),
+    path('blog/', include('blog.urls')),
+    path('signup/', views.handleSignup, name='handleSignup'),
+    path('login/', views.handleLogin, name='handlelogin'),
+    path('logout/', views.handleLogout, name='handlelogout'),
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

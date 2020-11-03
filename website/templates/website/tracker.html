@@ -75,9 +75,10 @@ $('#traceform').submit(function(event) {
         })
 
         .done(function(data) {
+             $('#citems').empty()
             datas = JSON.parse(data);
-            console.log(datas[0])
-            updates = datas[0]
+            //console.log(datas[0])
+            updates = datas['updates']
             //console.log(updates)
             if ($.isEmptyObject(updates)) {
                 // If object is empty
@@ -92,11 +93,8 @@ $('#traceform').submit(function(event) {
                     <span class="badge badge-primary badge-pill">${time}</span>
                 </li>`
                     $('#items').append(mystr);
-
-                }
-            }
-            console.log(datas[1])
-            cart=JSON.parse(datas[1])
+                        //console.log(datas[itemsJson])
+            cart=JSON.parse(datas['itemsJson'])
             for (item in cart) {
 
     let name = cart[item][1];
@@ -108,6 +106,10 @@ $('#traceform').submit(function(event) {
                 </li>`
     $('#citems').append(mystr);
 }
+
+                }
+            }
+    
 
         })
 
